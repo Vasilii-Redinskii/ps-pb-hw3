@@ -11,8 +11,9 @@ def get_absolute_url (url, *args, **kwargs):
     for k, v in kwargs.items():
         absolute_url.append(f'{k}={v}')
         absolute_url.append('&')
-    
+    # transe list to string without last element and return function
     return ''.join(absolute_url[:-1])
+
 
 print(get_absolute_url('www.yandex.ru', 'posts', 'news', id='24', author='admin'))
 print(get_absolute_url('www.google.com', 'images', id='24', category='auto', color='red', size='small'))
