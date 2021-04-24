@@ -1,19 +1,13 @@
-def get_absolute_url (url, *args, **kwargs):
-    # add url to list
-    absolute_url = [url]
-    # add "/" to args
-    for i in args:
-        i="/"+i
-        absolute_url.append(i)
-    #add "?" to list  
-    absolute_url.append('?') 
-    #add kwargs to list
-    for k, v in kwargs.items():
-        absolute_url.append(f'{k}={v}')
-        absolute_url.append('&')
-    # transe list to string without last element and return function
-    return ''.join(absolute_url[:-1])
+def get_absolute_url(url, *args, **kwargs):
 
+    for i in args:
+        url += '/' + i
+    url += '?'
+
+    for k,v in kwargs.items():
+        url += k + '=' + v + '&'
+    url = url.rstrip('&')
+    return url
 
 print(get_absolute_url('www.yandex.ru', 'posts', 'news', id='24', author='admin'))
 print(get_absolute_url('www.google.com', 'images', id='24', category='auto', color='red', size='small'))
