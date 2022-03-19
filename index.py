@@ -20,10 +20,10 @@ def plural_form (int_number,form1,form2,form3):
     number=str(int_number)
     #determines teens to form 3 
     if len(number)>1 and int(number[-2])==1:
-        form_word = form2
+        form_word = form3
     #determines form 2
     elif int(number[-1]) in fnumber2:
-        form_word = form1
+        form_word = form2
     #determines form 2    
     elif int(number[-1]) in fnumber3:
         form_word = form3
