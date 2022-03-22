@@ -33,6 +33,24 @@ def plural_form (int_number,form1,form2,form3):
     return form_word
 
 
+def html(decorator_parameter_1='', **kwargs):
+    #Recieve parameters and make open/close tegs teg_open teg_close
+    teg_open=f"<{decorator_parameter_1}"
+    teg_close=f"</{decorator_parameter_1}>"
+    for k,v in kwargs.items():
+        teg_open += f' {k}="{v}"'
+    teg_open=f"{teg_open}>"
+
+    def decorator(decorated_function):
+        def wrapper_over_decorated_function(input_value):
+            #Add open/close tegs to result
+            result = teg_open + decorated_function(input_value)+teg_close
+            return result
+
+        return wrapper_over_decorated_function
+    return decorator
+
+
 print('0-3:', fizz_buzz(0, 3))
 print('0-5:', fizz_buzz(0, 5))
 print('15-15:', fizz_buzz(15, 15))
@@ -44,3 +62,12 @@ print(5, plural_form(5, 'яблоко', 'яблока', 'яблок'))
 print(11, plural_form(11, 'яблоко', 'яблока', 'яблок'))
 print(121, plural_form(121, 'яблоко', 'яблока', 'яблок'))
 print(125, plural_form(125, 'яблоко', 'яблока', 'яблок'))
+
+@html('body')
+@html('div', width=200, height=100)
+@html('a', href='https://yandex.ru/')
+def to_string(input_value):
+    return str(input_value)
+
+
+print(to_string('ссылка на яндекс'))
